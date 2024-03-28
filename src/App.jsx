@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./Reset.css";
+import "./App.css";
+import Person from "./components/Person";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
+  const [newName, setNewName] = useState("");
+
+  const addName = (event) => {
+    event.preventDefault();
+    console.log("button clicked", event.target);
+    if (persons.some((person) => person.name === newName)) {
+      window.alert(`${newName} is already added to phonebook`);
+    } else {
+      const newPerson = {
+        name: newName,
+        // id: persons.length + 1,
+      };
+
+      setPersons(persons.concat(newPerson));
+      setNewName("");
+    }
+  };
+
+  const handleNameChange = (event) => {
+    setNewName(event.target.value);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h2>Phonebook</h2>
+      <form onSubmit={addName}>
+        <div>
+          Name: <input value={newName} onChange={handleNameChange} />
+        </div>
+        <div>
+          <button type="submit">add</button>
+        </div>
+      </form>
+      <h2>Numbers</h2>
+      <ul>
+        {persons.map((person) => (
+          <Person key={person.name} person={person} />
+        ))}
+      </ul>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
