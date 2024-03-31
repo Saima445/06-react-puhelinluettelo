@@ -5,12 +5,49 @@ html {
 body {
   font-size: 1.6rem;
   margin: 1rem;
-  padding: 1rem;
-  background-color: #faed00;
+  background-color: #f3e599;
   font-family: "Libre Franklin", sans-serif;
+  color: #46464a;
 }
 
 h2 {
+  background-color: #faed00;
+  border-block-end: 2px solid black;
+  color: black;
+  padding: 1rem;
   font-size: 2.2rem;
+  font-weight: 600;
+  margin-block-end: 2rem;
+}
+
+.input-block {
+  margin-block-end: 1rem;
+}
+
+.input-label {
+  display: inline-block;
+  width: 13rem;
   font-weight: 500;
+}
+
+input {
+  font-family: "Libre Franklin", sans-serif;
+  width: 20rem;
+  padding: 0.6rem;
+}
+
+button {
+  font-family: "Libre Franklin", sans-serif;
+  margin: 1rem 0 2rem 0;
+  width: 10rem;
+  cursor: pointer;
+}
+
+li {
+  margin-block-end: 1rem;
+  border-block-end: 1px dotted grey;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
 }
