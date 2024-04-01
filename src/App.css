@@ -39,13 +39,13 @@ input {
 button {
   font-family: "Libre Franklin", sans-serif;
   font-weight: 500;
-  margin: 1rem 0 2rem 0;
+  margin: 1rem 0 2rem 13rem;
   padding: 0.8rem;
   width: 10rem;
   cursor: pointer;
   background-color: white;
-  border: 2px solid #46464a;
-  transition: background-color 0.5s;
+  border: 1.5px solid #46464a;
+  border-radius: 2px;
 }
 
 button:hover {
@@ -53,6 +53,7 @@ button:hover {
 }
 
 button:active {
+  transition: background-color 0.5s;
   background-color: rgb(112, 248, 33);
 }
 
