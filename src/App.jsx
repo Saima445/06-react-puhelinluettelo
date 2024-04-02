@@ -21,6 +21,23 @@ const App = () => {
     });
   }, []);
 
+  // const updatePerson = (id) => {
+  //   const person = persons.find((p) => p.id === id);
+  //   const confirmed = window.confirm(
+  //     `${person.name} is already added to phonebook, replace the old number with a new one?`
+  //   );
+  //   const changedPerson = { ...person };
+
+  //   if (confirmed) {
+  //     personService.update(id, changedPerson).then((returnedPerson) => {
+  //       setPersons(
+  //         persons.map((person) => (person.id !== id ? person : returnedPerson))
+  //       );
+  //     });
+  //     setPersons(persons.filter((p) => p.id !== id));
+  //   }
+  // };
+
   const deletePerson = (id) => {
     const person = persons.find((p) => p.id === id);
     const confirmed = window.confirm(`Delete ${person.name} ?`);
@@ -44,8 +61,28 @@ const App = () => {
   const addPerson = (event) => {
     event.preventDefault();
     console.log("button clicked", event.target);
-    if (persons.some((person) => person.name === newName)) {
-      window.alert(`${newName} is already added to phonebook`);
+    const existingPerson = persons.find((person) => person.name === newName);
+
+    if (existingPerson) {
+      const confirmed = window.confirm(
+        `${existingPerson.name} is already added to phonebook, replace the old number with a new one?`
+      );
+      if (confirmed) {
+        const updatedPerson = { ...existingPerson, number: newNumber };
+
+        personService
+          .update(existingPerson.id, updatedPerson)
+          .then((returnedPerson) => {
+            setPersons(
+              persons.map((person) =>
+                person.id !== existingPerson.id ? person : returnedPerson
+              )
+            );
+          })
+          .catch((error) => {
+            console.error("Error updating person:", error);
+          });
+      }
     } else {
       const newPerson = {
         name: newName,
