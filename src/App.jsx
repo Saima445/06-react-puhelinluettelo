@@ -37,16 +37,16 @@ const App = () => {
       setNewName("");
       setNewNumber("");
 
-      // axios
-      //   .post("http://localhost:3001/persons", newPerson)
-      //   .then((response) => {
-      //     setPersons(persons.concat(response.data));
-      //     setNewName("");
-      //     setNewNumber("");
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error adding person:", error);
-      //   });
+      axios
+        .post("http://localhost:3001/persons", newPerson)
+        .then((response) => {
+          setPersons(persons.concat(response.data));
+          setNewName("");
+          setNewNumber("");
+        })
+        .catch((error) => {
+          console.error("Error adding person:", error);
+        });
     }
   };
 
