@@ -30,7 +30,9 @@ const PersonForm = ({
         />
       </div>
       <div>
-        <button type="submit">Add</button>
+        <button className="input-button" type="submit">
+          Add
+        </button>
       </div>
     </form>
   );

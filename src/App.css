@@ -39,29 +39,38 @@ input {
 button {
   font-family: "Libre Franklin", sans-serif;
   font-weight: 500;
-  margin: 1rem 0 2rem 13rem;
+  cursor: pointer;
+}
+
+.input-button {
+  margin: 1rem 0 2rem 24.5rem;
   padding: 0.8rem;
   width: 10rem;
-  cursor: pointer;
-  background-color: white;
-  border: 1.5px solid #46464a;
-  border-radius: 2px;
 }
 
-button:hover {
-  background-color: rgb(236, 236, 236);
-}
-
-button:active {
+.input-button:hover {
   transition: background-color 0.5s;
-  background-color: rgb(112, 248, 33);
+  background-color: rgb(177, 249, 135);
+}
+
+.delete-button:hover {
+  transition: background-color 0.5s;
+  background-color: rgb(244, 141, 150);
 }
 
 li {
   margin-block-end: 1rem;
-  border-block-end: 1px dotted grey;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 60%;
+  justify-content: flex-start;
+  align-items: end;
 }
+
+.p-width {
+  width: 20rem;
+  border-block-end: 1px dotted grey;
+}
+
+/* li > * {
+  flex-basis: 1;
+} */

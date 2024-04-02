@@ -21,6 +21,24 @@ const App = () => {
     });
   }, []);
 
+  const deletePerson = (id) => {
+    const person = persons.find((p) => p.id === id);
+    const deletedPerson = { ...person };
+
+    personService
+      .deletePerson(id)
+      .then(() => {
+        setPersons(persons.filter((person) => person.id !== id));
+      })
+      .catch((error) => {
+        alert(
+          `the person '${person.name}' was already deleted from server`,
+          error
+        );
+        setPersons(persons.filter((n) => n.id !== id));
+      });
+  };
+
   const addPerson = (event) => {
     event.preventDefault();
     console.log("button clicked", event.target);
@@ -32,10 +50,6 @@ const App = () => {
         number: newNumber,
       };
 
-      // setPersons(persons.concat(newPerson));
-      // // setPersons([...persons, newPerson]);
-      // setNewName("");
-      // setNewNumber("");
       personService
         .create(newPerson)
         .then((returnedPerson) => {
@@ -78,7 +92,7 @@ const App = () => {
         numberChange={handleNumberChange}
       />
       <h2>Numbers</h2>
-      <Persons persons={filteredPersons} />
+      <Persons persons={filteredPersons} deletePerson={deletePerson} />
     </>
   );
 };
