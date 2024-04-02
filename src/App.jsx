@@ -23,20 +23,22 @@ const App = () => {
 
   const deletePerson = (id) => {
     const person = persons.find((p) => p.id === id);
-    const deletedPerson = { ...person };
+    const confirmed = window.confirm(`Delete ${person.name} ?`);
 
-    personService
-      .deletePerson(id)
-      .then(() => {
-        setPersons(persons.filter((person) => person.id !== id));
-      })
-      .catch((error) => {
-        alert(
-          `the person '${person.name}' was already deleted from server`,
-          error
-        );
-        setPersons(persons.filter((n) => n.id !== id));
-      });
+    if (confirmed) {
+      personService
+        .deletePerson(id)
+        .then(() => {
+          setPersons(persons.filter((person) => person.id !== id));
+        })
+        .catch((error) => {
+          alert(
+            `the person '${person.name}' was already deleted from server`,
+            error
+          );
+          setPersons(persons.filter((n) => n.id !== id));
+        });
+    }
   };
 
   const addPerson = (event) => {
