@@ -5,6 +5,7 @@ import "./App.css";
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
+import personService from "./services/persons";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -12,14 +13,13 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [searchValue, setSearchValue] = useState("");
 
-  const hook = () => {
+  useEffect(() => {
     console.log("effect");
-    axios.get("http://localhost:3001/persons").then((response) => {
+    personService.getAll().then((initialPersons) => {
       console.log("promise fulfilled");
-      setPersons(response.data);
+      setPersons(initialPersons);
     });
-  };
-  useEffect(hook, []);
+  }, []);
 
   const addPerson = (event) => {
     event.preventDefault();
@@ -32,15 +32,14 @@ const App = () => {
         number: newNumber,
       };
 
-      setPersons(persons.concat(newPerson));
-      // setPersons([...persons, newPerson]);
-      setNewName("");
-      setNewNumber("");
-
-      axios
-        .post("http://localhost:3001/persons", newPerson)
-        .then((response) => {
-          setPersons(persons.concat(response.data));
+      // setPersons(persons.concat(newPerson));
+      // // setPersons([...persons, newPerson]);
+      // setNewName("");
+      // setNewNumber("");
+      personService
+        .create(newPerson)
+        .then((returnedPerson) => {
+          setPersons(persons.concat(returnedPerson));
           setNewName("");
           setNewNumber("");
         })
