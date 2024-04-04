@@ -71,8 +71,14 @@ li {
 }
 
 .p-width {
-  width: 20rem;
+  width: 50rem;
   border-block-end: 1px dotted grey;
+}
+.p-width-number {
+  width: 15rem;
+  text-align: start;
+  border-block-end: 1px dotted grey;
+  margin-inline-end: 1rem;
 }
 
 .message-successful {
