@@ -11,6 +11,7 @@ const Filter = ({ value, onChange }) => {
         onChange={onChange}
         value={value}
         placeholder="Search by name"
+        autoComplete="name"
       />
     </div>
   );

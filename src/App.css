@@ -32,7 +32,7 @@ h2 {
 
 input {
   font-family: "Libre Franklin", sans-serif;
-  width: 20rem;
+  width: 40%;
   padding: 0.6rem;
 }
 
@@ -40,10 +40,12 @@ button {
   font-family: "Libre Franklin", sans-serif;
   font-weight: 500;
   cursor: pointer;
+  border: 1px solid black;
+  border-radius: 4px;
 }
 
 .input-button {
-  margin: 1rem 0 2rem 24.5rem;
+  margin: 1rem 0 2rem 0;
   padding: 0.8rem;
   width: 10rem;
 }

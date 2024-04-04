@@ -53,7 +53,7 @@ const App = () => {
             `the person '${person.name}' was already deleted from server`,
             error
           );
-          setPersons(persons.filter((n) => n.id !== id));
+          setPersons(persons.filter((person) => person.id !== id));
         });
     }
   };
@@ -78,6 +78,8 @@ const App = () => {
                 person.id !== existingPerson.id ? person : returnedPerson
               )
             );
+            setNewName("");
+            setNewNumber("");
           })
           .catch((error) => {
             console.error("Error updating person:", error);
